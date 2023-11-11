@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2023 a las 00:46:47
+-- Tiempo de generación: 11-11-2023 a las 18:33:09
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `article` (
-  `ID_Publication` int(11) NOT NULL,
+  `ID_Article` int(11) NOT NULL,
   `title` varchar(160) DEFAULT NULL,
   `journal` varchar(160) DEFAULT NULL,
   `volume` varchar(16) DEFAULT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE `author` (
 --
 
 CREATE TABLE `book` (
-  `ID_Publication` int(11) NOT NULL,
+  `ID_Book` int(11) NOT NULL,
   `title` varchar(160) DEFAULT NULL,
   `ID_Publisher` int(11) DEFAULT NULL,
   `volume` varchar(16) DEFAULT NULL,
@@ -149,7 +149,7 @@ CREATE TABLE `manual` (
 --
 
 CREATE TABLE `misc` (
-  `ID_Publication` int(11) NOT NULL,
+  `ID_Misc` int(11) NOT NULL,
   `title` varchar(160) DEFAULT NULL,
   `address` varchar(160) DEFAULT NULL,
   `howpublished` varchar(160) DEFAULT NULL,
@@ -222,7 +222,7 @@ CREATE TABLE `publisher` (
 --
 
 CREATE TABLE `techreport` (
-  `ID_Publication` int(11) NOT NULL,
+  `ID_Techreport` int(11) NOT NULL,
   `title` varchar(160) DEFAULT NULL,
   `ID_Institution` int(11) DEFAULT NULL,
   `type` varchar(64) DEFAULT NULL,
@@ -256,7 +256,7 @@ CREATE TABLE `thesis` (
 -- Indices de la tabla `article`
 --
 ALTER TABLE `article`
-  ADD PRIMARY KEY (`ID_Publication`);
+  ADD PRIMARY KEY (`ID_Article`);
 
 --
 -- Indices de la tabla `author`
@@ -269,7 +269,7 @@ ALTER TABLE `author`
 -- Indices de la tabla `book`
 --
 ALTER TABLE `book`
-  ADD PRIMARY KEY (`ID_Publication`),
+  ADD PRIMARY KEY (`ID_Book`),
   ADD KEY `ID_Publisher` (`ID_Publisher`);
 
 --
@@ -310,7 +310,7 @@ ALTER TABLE `manual`
 -- Indices de la tabla `misc`
 --
 ALTER TABLE `misc`
-  ADD PRIMARY KEY (`ID_Publication`);
+  ADD PRIMARY KEY (`ID_Misc`);
 
 --
 -- Indices de la tabla `person`
@@ -342,7 +342,7 @@ ALTER TABLE `publisher`
 -- Indices de la tabla `techreport`
 --
 ALTER TABLE `techreport`
-  ADD PRIMARY KEY (`ID_Publication`),
+  ADD PRIMARY KEY (`ID_Techreport`),
   ADD KEY `ID_Institution` (`ID_Institution`);
 
 --
@@ -388,7 +388,7 @@ ALTER TABLE `publisher`
 -- Filtros para la tabla `article`
 --
 ALTER TABLE `article`
-  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`ID_Publication`) REFERENCES `publication` (`ID_Publication`);
+  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`ID_Article`) REFERENCES `publication` (`ID_Publication`);
 
 --
 -- Filtros para la tabla `author`
@@ -401,7 +401,7 @@ ALTER TABLE `author`
 -- Filtros para la tabla `book`
 --
 ALTER TABLE `book`
-  ADD CONSTRAINT `book_ibfk_1` FOREIGN KEY (`ID_Publication`) REFERENCES `publication` (`ID_Publication`),
+  ADD CONSTRAINT `book_ibfk_1` FOREIGN KEY (`ID_Book`) REFERENCES `publication` (`ID_Publication`),
   ADD CONSTRAINT `book_ibfk_2` FOREIGN KEY (`ID_Publisher`) REFERENCES `publisher` (`ID_Publisher`);
 
 --
@@ -416,7 +416,7 @@ ALTER TABLE `editor`
 --
 ALTER TABLE `inbook`
   ADD CONSTRAINT `inbook_ibfk_1` FOREIGN KEY (`ID_Inbook`) REFERENCES `publication` (`ID_Publication`),
-  ADD CONSTRAINT `inbook_ibfk_2` FOREIGN KEY (`ID_book`) REFERENCES `book` (`ID_Publication`);
+  ADD CONSTRAINT `inbook_ibfk_2` FOREIGN KEY (`ID_book`) REFERENCES `book` (`ID_Book`);
 
 --
 -- Filtros para la tabla `inproceedings`
@@ -436,7 +436,7 @@ ALTER TABLE `manual`
 -- Filtros para la tabla `misc`
 --
 ALTER TABLE `misc`
-  ADD CONSTRAINT `misc_ibfk_1` FOREIGN KEY (`ID_Publication`) REFERENCES `publication` (`ID_Publication`);
+  ADD CONSTRAINT `misc_ibfk_1` FOREIGN KEY (`ID_Misc`) REFERENCES `publication` (`ID_Publication`);
 
 --
 -- Filtros para la tabla `proceedings`
@@ -450,7 +450,7 @@ ALTER TABLE `proceedings`
 -- Filtros para la tabla `techreport`
 --
 ALTER TABLE `techreport`
-  ADD CONSTRAINT `techreport_ibfk_1` FOREIGN KEY (`ID_Publication`) REFERENCES `publication` (`ID_Publication`),
+  ADD CONSTRAINT `techreport_ibfk_1` FOREIGN KEY (`ID_Techreport`) REFERENCES `publication` (`ID_Publication`),
   ADD CONSTRAINT `techreport_ibfk_2` FOREIGN KEY (`ID_Institution`) REFERENCES `institution` (`ID_Institution`);
 
 --
