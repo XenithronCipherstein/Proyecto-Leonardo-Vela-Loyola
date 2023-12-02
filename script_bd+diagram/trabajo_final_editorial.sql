@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2023 a las 18:33:09
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 02-12-2023 a las 04:57:33
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,6 +39,13 @@ CREATE TABLE `article` (
   `note` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `article`
+--
+
+INSERT INTO `article` (`ID_Article`, `title`, `journal`, `volume`, `number`, `pages`, `pub_month`, `pub_year`, `note`) VALUES
+(2, 'Titulo del Articulo', 'Nombre de la revista', 'Volumen1', 123, '1-20', 'Ene', 2023, 'La Nota es una accion que hace cuando...');
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +56,13 @@ CREATE TABLE `author` (
   `ID_Publication` int(11) NOT NULL,
   `ID_Person` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `author`
+--
+
+INSERT INTO `author` (`ID_Publication`, `ID_Person`) VALUES
+(4, 1);
 
 -- --------------------------------------------------------
 
@@ -68,6 +82,13 @@ CREATE TABLE `book` (
   `note` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `book`
+--
+
+INSERT INTO `book` (`ID_Book`, `title`, `ID_Publisher`, `volume`, `series`, `edition`, `pub_month`, `pub_year`, `note`) VALUES
+(1, 'PrimerTitulo', 1, 'Volumen1', 'Segunda serie', '0', 'Ene', 2023, '0');
+
 -- --------------------------------------------------------
 
 --
@@ -78,6 +99,14 @@ CREATE TABLE `editor` (
   `ID_Publication` int(11) NOT NULL,
   `ID_Person` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `editor`
+--
+
+INSERT INTO `editor` (`ID_Publication`, `ID_Person`) VALUES
+(4, 1),
+(7, 1);
 
 -- --------------------------------------------------------
 
@@ -95,6 +124,13 @@ CREATE TABLE `inbook` (
   `note` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `inbook`
+--
+
+INSERT INTO `inbook` (`ID_Inbook`, `ID_book`, `title`, `chapter`, `pages`, `type`, `note`) VALUES
+(5, 1, 'PrimerTituloInBook', 'Primero', '1-20', 'Historia', 'La Nota es una accion que hace cuando...');
+
 -- --------------------------------------------------------
 
 --
@@ -109,6 +145,13 @@ CREATE TABLE `inproceedings` (
   `type` varchar(64) DEFAULT NULL,
   `note` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `inproceedings`
+--
+
+INSERT INTO `inproceedings` (`ID_InProceedings`, `Proceedings_ID`, `title`, `pages`, `type`, `note`) VALUES
+(7, 7, 'Primer titulo inprodeedings', '1-20', 'Inproceedings', 'nota');
 
 -- --------------------------------------------------------
 
@@ -126,6 +169,14 @@ CREATE TABLE `institution` (
   `country` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `institution`
+--
+
+INSERT INTO `institution` (`ID_Institution`, `name`, `street`, `city`, `province`, `postal_code`, `country`) VALUES
+(1, 'Mariano Damaso Beraun', 'Jr.Kotosh', 'Huanuco', 'Huanuco', '10003', 'Peru'),
+(2, 'Senati', 'Cahuide', 'Huanuco', 'Huanuco', '10003', 'Chile');
+
 -- --------------------------------------------------------
 
 --
@@ -141,6 +192,13 @@ CREATE TABLE `manual` (
   `pub_year` int(11) DEFAULT NULL,
   `note` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `manual`
+--
+
+INSERT INTO `manual` (`ID_Manual`, `title`, `organization`, `edition`, `pub_month`, `pub_year`, `note`) VALUES
+(1, 'Manual', 1, 'Edicion Primera', 'Ene', 2023, 'Primera nota');
 
 -- --------------------------------------------------------
 
@@ -158,6 +216,13 @@ CREATE TABLE `misc` (
   `note` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `misc`
+--
+
+INSERT INTO `misc` (`ID_Misc`, `title`, `address`, `howpublished`, `pub_month`, `pub_year`, `note`) VALUES
+(2, 'Titulo', 'Segunda ', 'Mediante una editorial', 'Dic', 2023, 'Nota');
+
 -- --------------------------------------------------------
 
 --
@@ -169,6 +234,13 @@ CREATE TABLE `person` (
   `sumame` char(32) NOT NULL,
   `given_names` char(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `person`
+--
+
+INSERT INTO `person` (`ID_Person`, `sumame`, `given_names`) VALUES
+(1, 'Sumame1', 'EjemploGivenNames12');
 
 -- --------------------------------------------------------
 
@@ -188,6 +260,13 @@ CREATE TABLE `proceedings` (
   `note` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `proceedings`
+--
+
+INSERT INTO `proceedings` (`ID_Proceedings`, `title`, `publisher`, `volume`, `series`, `organization`, `pub_month`, `pub_year`, `note`) VALUES
+(7, 'Primer titulo', 2, 'VOlumen1', 'Segunda Serie', 1, 'Dic', 2000, 'Nota');
+
 -- --------------------------------------------------------
 
 --
@@ -198,6 +277,17 @@ CREATE TABLE `publication` (
   `ID_Publication` int(11) NOT NULL,
   `type` char(18) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `publication`
+--
+
+INSERT INTO `publication` (`ID_Publication`, `type`) VALUES
+(1, 'Articulo'),
+(2, 'Articulo1'),
+(4, 'Articulo2'),
+(5, 'Articulo10'),
+(7, 'Articulo123');
 
 -- --------------------------------------------------------
 
@@ -214,6 +304,14 @@ CREATE TABLE `publisher` (
   `postal_code` char(10) NOT NULL,
   `country` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `publisher`
+--
+
+INSERT INTO `publisher` (`ID_Publisher`, `name`, `street`, `city`, `province`, `postal_code`, `country`) VALUES
+(1, 'Primera', 'Jr.Kotosh', 'Huanuco', 'Huanuco', '10003', 'Peru'),
+(2, 'Segunda', 'Cauide', 'Huanuco', 'Leoncio Prado', '10003', 'Chile');
 
 -- --------------------------------------------------------
 
@@ -232,6 +330,13 @@ CREATE TABLE `techreport` (
   `note` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `techreport`
+--
+
+INSERT INTO `techreport` (`ID_Techreport`, `title`, `ID_Institution`, `type`, `number`, `pub_month`, `pub_year`, `note`) VALUES
+(7, 'Segundo titulo', 1, 'Informe', '123', 'Ene', 2022, 'La nota');
+
 -- --------------------------------------------------------
 
 --
@@ -247,6 +352,38 @@ CREATE TABLE `thesis` (
   `pub_year` int(11) DEFAULT NULL,
   `note` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `thesis`
+--
+
+INSERT INTO `thesis` (`ID_Thesis`, `title`, `school`, `type`, `pub_month`, `pub_year`, `note`) VALUES
+(7, 'Esta es mi Tesis', 2, 'Investigacion', 'Dic', 2023, 'nota');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nombres` varchar(255) NOT NULL,
+  `apellidos` varchar(255) NOT NULL,
+  `correo` varchar(255) NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `username` varchar(50) NOT NULL,
+  `contrasena` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `correo`, `fecha_nacimiento`, `telefono`, `username`, `contrasena`) VALUES
+(1, 'Leonardo', 'Vela Loyola', '77219482vela@gmail.com', '2002-12-12', '970411498', 'admin', '$2y$10$XMN3fFI5tC75KZeJLdPAq.UdMEVfRThfoVCgrpsqA2Y/0PIHlqcFe'),
+(2, 'Leonardo', 'Vela Loyola', '77219482vela@gmail.com', '2002-12-12', '970411498', 'admin', '$2y$10$CwP7/Asps.AAxJ07ngw48uHN/4T5psMhRhbYDjhk7mevO1UAN7WY.');
 
 --
 -- Índices para tablas volcadas
@@ -353,6 +490,12 @@ ALTER TABLE `thesis`
   ADD KEY `school` (`school`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -360,25 +503,31 @@ ALTER TABLE `thesis`
 -- AUTO_INCREMENT de la tabla `institution`
 --
 ALTER TABLE `institution`
-  MODIFY `ID_Institution` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Institution` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `person`
 --
 ALTER TABLE `person`
-  MODIFY `ID_Person` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Person` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `publication`
 --
 ALTER TABLE `publication`
-  MODIFY `ID_Publication` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Publication` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `publisher`
 --
 ALTER TABLE `publisher`
-  MODIFY `ID_Publisher` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Publisher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

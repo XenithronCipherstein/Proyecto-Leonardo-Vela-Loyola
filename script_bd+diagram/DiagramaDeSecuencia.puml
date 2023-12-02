@@ -1,0 +1,14 @@
+@startuml
+actor Usuario as User
+participant "Sistema" as System
+database BaseDeDatos
+
+User -> System: Iniciar Sesión
+activate System
+System -> BaseDeDatos: Verificar Credenciales
+activate BaseDeDatos
+BaseDeDatos --> System: Credenciales Válidas
+deactivate BaseDeDatos
+System --> User: Sesión Iniciada
+deactivate System
+@enduml

@@ -1,27 +1,15 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+    background-color: #000000;
+    padding: 50px;
 }
-
-form {
+.container {
     max-width: 400px;
     margin: auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-}
-
-input[type="submit"] {
-    background-color: #4caf50;
-    color: white;
-    cursor: pointer;
+h2 {
+    text-align: center;
 }

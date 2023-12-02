@@ -1,0 +1,177 @@
+@startuml
+class Usuario {
+  -id: int
+  -nombres: string
+  -apellidos: string
+  -correo: string
+  -fecha_nacimiento: date
+  -telefono: string
+  -username: string
+  -contrasena: string
+  +iniciarSesion(): void
+  +registrarse(): void
+}
+
+class Publication {
+  -id: int
+  -type: string
+}
+
+class Article {
+  -id: int
+  -title: string
+  -journal: string
+  -volume: string
+  -number: int
+  -pages: string
+  -pub_month: string
+  -pub_year: int
+  -note: string
+}
+
+class Author {
+  -idPublication: int
+  -idPerson: int
+}
+
+class Book {
+  -id: int
+  -title: string
+  -idPublisher: int
+  -volume: string
+  -series: string
+  -edition: string
+  -pub_month: string
+  -pub_year: int
+  -note: string
+}
+
+class Editor {
+  -idPublication: int
+  -idPerson: int
+}
+
+class InBook {
+  -id: int
+  -idBook: int
+  -title: string
+  -chapter: string
+  -pages: string
+  -type: string
+  -note: string
+}
+
+class InProceedings {
+  -id: int
+  -proceedingsId: int
+  -title: string
+  -pages: string
+  -type: string
+  -note: string
+}
+
+class Institution {
+  -id: int
+  -name: string
+  -street: string
+  -city: string
+  -province: string
+  -postal_code: string
+  -country: string
+}
+
+class Manual {
+  -id: int
+  -title: string
+  -organization: int
+  -edition: string
+  -pub_month: string
+  -pub_year: int
+  -note: string
+}
+
+class Misc {
+  -id: int
+  -title: string
+  -address: string
+  -how_published: string
+  -pub_month: string
+  -pub_year: int
+  -note: string
+}
+
+class Person {
+  -id: int
+  -surname: string
+  -given_names: string
+}
+
+class Proceedings {
+  -id: int
+  -title: string
+  -publisherId: int
+  -volume: string
+  -series: string
+  -organizationId: int
+  -pub_month: string
+  -pub_year: int
+  -note: string
+}
+
+class Publisher {
+  -id: int
+  -name: string
+  -street: string
+  -city: string
+  -province: string
+  -postal_code: string
+  -country: string
+}
+
+class TechReport {
+  -id: int
+  -title: string
+  -institutionId: int
+  -type: string
+  -number: string
+  -pub_month: string
+  -pub_year: int
+  -note: string
+}
+
+class Thesis {
+  -id: int
+  -title: string
+  -schoolId: int
+  -type: string
+  -pub_month: string
+  -pub_year: int
+  -note: string
+}
+
+Usuario --|> Publication
+Author --|> Person
+Editor --|> Person
+
+Publication <|-- Article
+Publication <|-- Book
+Publication <|-- InBook
+Publication <|-- InProceedings
+Publication <|-- Manual
+Publication <|-- Misc
+Publication <|-- Proceedings
+Publication <|-- TechReport
+Publication <|-- Thesis
+
+Article -- Author
+Book -- Author
+Editor -- Person
+InBook -- Book
+InProceedings -- Proceedings
+Manual -- Institution
+Misc -- Person
+Proceedings -- Publisher
+TechReport -- Institution
+Thesis -- Institution
+
+@enduml
